@@ -16,7 +16,7 @@ This project demonstrates deploying a Spring Boot application (`hellomvc-0.0.1-S
 │ ├── variables.tf
 │ └── outputs.tf
 └── README.md
-exit
+
 ---
 
 ## **Steps to Deploy**
