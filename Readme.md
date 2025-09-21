@@ -1,21 +1,19 @@
-# Tech Eazy DevOps Project
+# Spring Boot AWS Deployment
 
-This project demonstrates deploying a Spring Boot application (`hellomvc-0.0.1-SNAPSHOT.jar`) to an AWS EC2 instance using **Terraform** and **SCP/SSH**.
+## 📁 Project Structure
 
----
-
-## **Project Structure**
-```bash
+```
 .
 ├── backend/
-│ └── hellomvc-0.0.1-SNAPSHOT.jar # Your Spring Boot JAR
+│   └── hellomvc-0.0.1-SNAPSHOT.jar # Your Spring Boot JAR
 ├── scripts/
-│ └── user_data.sh # Optional auto-install script
+│   └── user_data.sh # Optional auto-install script
 ├── terraform/
-│ ├── main.tf
-│ ├── variables.tf
-│ └── outputs.tf
+│   ├── main.tf
+│   ├── variables.tf
+│   └── outputs.tf
 └── README.md
+```
 
 ---
 
@@ -24,19 +22,34 @@ This project demonstrates deploying a Spring Boot application (`hellomvc-0.0.1-S
 ### **1️⃣ Provision Infrastructure with Terraform**
 
 1. Navigate to the Terraform folder:
+   ```bash
+   cd terraform
+   terraform init
+   terraform apply
+   ```
 
-```bash
-cd terraform
-terraform init
-terraform apply
+2. Copy your Spring Boot JAR to the EC2 instance:
+   ```bash
+   scp -i "key\path\yourkey.pem" backend/hellomvc-0.0.1-SNAPSHOT.jar ec2-user@<EC2-PUBLIC-IP>:/home/ec2-user/backend/
+   ```
 
-scp -i "key\path\yourkey.pem" backend/hellomvc-0.0.1-SNAPSHOT.jar ec2-user@<EC2-PUBLIC-IP>:/home/ec2-user/backend/
+3. SSH into your EC2 instance:
+   ```bash
+   ssh -i "key\path\yourkey.pem" ec2-user@<EC2-PUBLIC-IP>
+   ```
 
-ssh -i "key\path\yourkey.pem" ec2-user@<EC2-PUBLIC-IP>
-sudo backend
-sudo java -jar  hellomvc-0.0.1-SNAPSHOT.jar
+4. Start the application:
+   ```bash
+   sudo backend
+   sudo java -jar hellomvc-0.0.1-SNAPSHOT.jar
+   ```
 
-http://<ec2-pub-ip>/hello
-exit
+5. Access your application:
+   ```
+   http://<ec2-pub-ip>/hello
+   ```
 
-
+6. Exit SSH session:
+   ```bash
+   exit
+   ```
