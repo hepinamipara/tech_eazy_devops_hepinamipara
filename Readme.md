@@ -42,6 +42,9 @@
    ```bash
    sudo backend
    sudo java -jar hellomvc-0.0.1-SNAPSHOT.jar
+
+   java -jar hellomvc-0.0.1-SNAPSHOT.jar \
+     --logging.file.name=/var/log/myapp/hellomvc.log  for store log into this path 
    ```
 
 5. Access your application:
